@@ -7,8 +7,8 @@ WHERE {
   OPTIONAL { ?recipe schema:cookTime ?cookTime . }
   OPTIONAL { ?recipe schema:prepTime ?prepTime . }
   FILTER(
-    (bound(?cookTime) && (?cookTime < "PT1M"^^xsd:duration || ?cookTime > "PT180M"^^xsd:duration))
+    (bound(?cookTime) && (?cookTime < "PT1M"^^xsd:duration || ?cookTime > "PT720M"^^xsd:duration))
     ||
-    (bound(?prepTime) && (?prepTime < "PT1M"^^xsd:duration || ?prepTime > "PT180M"^^xsd:duration))
+    (bound(?prepTime) && (?prepTime < "PT1M"^^xsd:duration || ?prepTime > "PT720M"^^xsd:duration))
   )
 }

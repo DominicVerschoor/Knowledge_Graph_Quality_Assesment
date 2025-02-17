@@ -1,0 +1,17 @@
+PREFIX schema: <https://schema.org/>
+
+SELECT ?recipe ?property ?valueStr
+WHERE {
+  ?recipe a schema:Recipe .
+  {
+    ?recipe schema:cookTime ?value .
+    BIND("cookTime" AS ?property)
+  }
+  UNION
+  {
+    ?recipe schema:prepTime ?value .
+    BIND("prepTime" AS ?property)
+  }
+  BIND(STR(?value) AS ?valueStr)
+  FILTER(CONTAINS(LCASE(?valueStr), "nan"))
+}

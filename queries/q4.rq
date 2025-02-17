@@ -1,0 +1,17 @@
+PREFIX schema: <https://schema.org/>
+
+SELECT ?recipe ?property ?durStr
+WHERE {
+  ?recipe a schema:Recipe .
+  {
+    ?recipe schema:cookTime ?duration .
+    BIND("cookTime" AS ?property)
+  }
+  UNION
+  {
+    ?recipe schema:prepTime ?duration .
+    BIND("prepTime" AS ?property)
+  }
+  BIND(STR(?duration) AS ?durStr)
+  FILTER(!REGEX(?durStr, "^PT(\\d+H)?(\\d+M)?(\\d+S)?$"))
+}
