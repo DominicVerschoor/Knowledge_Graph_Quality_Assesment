@@ -1,0 +1,9 @@
+SELECT DISTINCT ?orphan
+WHERE {
+    ?orphan ?p1 ?o .
+
+    FILTER NOT EXISTS { ?s ?p2 ?orphan }
+    FILTER NOT EXISTS {?orphan a owl:DatatypeProperty}
+    FILTER NOT EXISTS {?orphan a owl:Class}
+    FILTER NOT EXISTS {?orphan a owl:ObjectProperty}
+}
