@@ -1,0 +1,5 @@
+SELECT ?recipe ?nutrition
+WHERE {
+    ?recipe schema:nutrition ?nutrition .
+    FILTER NOT EXISTS {?nutrition ?s ?o}
+}

@@ -1,0 +1,6 @@
+SELECT ?nutrition (COUNT(?recipe) AS ?duplicateRecipeCount)
+WHERE {
+    ?recipe schema:nutrition ?nutrition .
+}
+GROUP BY ?nutrition
+HAVING (COUNT(?recipe) > 1)
