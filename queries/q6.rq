@@ -1,0 +1,6 @@
+SELECT ?recipe ?nutritionType
+WHERE {
+  ?recipe schema:nutrition ?nutrition .
+  ?nutrition a ?nutritionType .
+  FILTER (?nutritionType IN (schema:NutritionInformation, dbo:Nutrition))
+}

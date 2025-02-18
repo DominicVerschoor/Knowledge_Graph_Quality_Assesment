@@ -1,0 +1,17 @@
+SELECT ?recipe ?property (COUNT(?value) AS ?numValues)
+WHERE {
+  ?recipe ?property ?value .
+  FILTER (?property IN (
+    schema:calories, 
+    schema:carbohydrateContent, 
+    schema:cholesterolContent, 
+    schema:fatContent, 
+    schema:fiberContent, 
+    schema:proteinContent, 
+    schema:saturatedFatContent, 
+    schema:sodiumContent, 
+    schema:sugarContent
+  ))
+}
+GROUP BY ?recipe ?property
+HAVING (COUNT(?value) > 1)

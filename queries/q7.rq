@@ -1,0 +1,18 @@
+SELECT ?recipe ?nutritionProperty ?value
+WHERE {
+  ?recipe ?nutritionProperty ?value .
+  FILTER (
+    ?nutritionProperty IN (
+      schema:calories, 
+      schema:carbohydrateContent, 
+      schema:cholesterolContent, 
+      schema:fatContent, 
+      schema:fiberContent, 
+      schema:proteinContent, 
+      schema:saturatedFatContent, 
+      schema:sodiumContent, 
+      schema:sugarContent
+    ) &&
+    ?value < 0
+  )
+}
