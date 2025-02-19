@@ -1,7 +1,0 @@
-SELECT ?name (COUNT(?recipe) AS ?duplicateRecipeCount)
-WHERE {
-    ?recipe a schema:Recipe ;
-        schema:name ?name.
-}
-GROUP BY ?name
-HAVING (COUNT(?recipe) > 1)
