@@ -1,0 +1,12 @@
+SELECT 	(COUNT(DISTINCT ?s) AS ?totalEntities)
+	(COUNT(DISTINCT ?interlinkedEntity) AS ?interlinkedEntities)
+	((COUNT(DISTINCT ?interlinkedEntity) * 100) / COUNT(DISTINCT ?s) AS ?interlinkingPercentage)
+WHERE {
+    	?s ?p ?o .
+    
+	OPTIONAL {
+		?s ?p ?o .
+		FILTER (isIRI(?o))
+		BIND(?s AS ?interlinkedEntity)
+	}
+}
