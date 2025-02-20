@@ -6,11 +6,16 @@ SELECT ?property ?valueCount (?totalEntities - ?valueCount AS ?missingCount)
 WHERE {
     	{
         	SELECT (COUNT(DISTINCT ?s) AS ?totalEntities)
-        	WHERE { ?s ?p ?o. }
+        	WHERE { 
+				?s rdf:type schema:Recipe. 
+				}
     	}
 	{
 		SELECT ?property (COUNT(DISTINCT ?s) AS ?valueCount)
-		WHERE { ?s ?property ?o. }
+		WHERE { 
+			?s rdf:type schema:Recipe ;
+				?property ?o . 
+			}
 		GROUP BY ?property
 	}
 }
