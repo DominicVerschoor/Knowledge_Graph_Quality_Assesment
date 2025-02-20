@@ -1,6 +1,11 @@
-SELECT ?recipe ?nutritionType
+SELECT ?class1 ?label1 ?comment1 ?class2 ?label2 ?comment2
 WHERE {
-  ?recipe schema:nutrition ?nutrition .
-  ?nutrition a ?nutritionType .
-  FILTER (?nutritionType IN (schema:NutritionInformation, dbo:Nutrition))
+  ?class1 a owl:Class ;
+          rdfs:label ?label1 ;
+          rdfs:comment ?comment1 .
+  ?class2 a owl:Class ;
+          rdfs:label ?label2 ;
+          rdfs:comment ?comment2 .
+  FILTER (?class1 != ?class2)
+  FILTER (regex(str(?label1), str(?label2), "i") || regex(str(?comment1), str(?comment2), "i"))
 }
